@@ -36,9 +36,9 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 - **RouterOS:** 7.18.2
 - **Software ID:** WFM1-CBPK
 
-### Nodes — Apple Mac M4
+### Nodes — Apple Mac Pro
 
-- 4x Apple Mac M4
+- 4x Apple Mac Pro
 - Each node: 2x 1Gbps RJ45 in LACP (2Gbps per node)
 - Network: 10.254.254.0/25
 
@@ -163,4 +163,4 @@ Switch-level redundancy **is not provided** — the entire infrastructure relies
 
 #### Notes
 
-Apple Mac M4 has built-in 10GbE — the switch limits connections to 1G. Returning to 10G requires stable SFP+ transceivers or a switch with native 10G RJ45 ports.
+Apple Mac Pro has built-in 10GbE — the switch limits connections to 1G. Returning to 10G requires stable SFP+ transceivers or a switch with native 10G RJ45 ports.
