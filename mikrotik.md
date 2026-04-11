@@ -26,6 +26,8 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | 3.2 | 2026-04-11 | Alex, Michał | MAC addresses for all assigned ports, QSFP+ sub-lanes, ether49 |
 | 3.3 | 2026-04-11 | Alex, Michał | Review: port layout, bridge MAC, sfp-sfpplus1, inferred MACs |
 | 3.4 | 2026-04-11 | Alex, Michał | Translated to English |
+| 3.5 | 2026-04-11 | Michał | Renamed nodes: Apple Mac M4 → Apple Mac Pro |
+| 3.6 | 2026-04-11 | Michał | Removed physical port layout diagram from topology |
 
 \newpage
 
@@ -96,8 +98,6 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | bond4 | ether26 | `04:F4:1C:8F:76:B9` |
 | bond4 | ether38 | `04:F4:1C:8F:76:C5` |
 
-> MAC address for ether14 was not visible in `print` output — derived from sequence.
-
 #### Topology
 
 ```
@@ -111,15 +111,6 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
  (1+13) (2+14) (25+37) (26+38)
    |       |       |       |
  Node 1  Node 2  Node 3  Node 4
-
-CRS354-48G-4S+2Q+RM — physical port layout
-(odd ports on top row, even ports on bottom row)
-
-pos:  1    2    3    4    5    6    7  ...  13  ...  19  ...  24
-top:  1    3    5    7   [9] [11] [13] ... [25] ... [37] ...  47
-bot:  2    4    6    8   10  [12] [14] ... [26] ... [38] ... [48]
-
-[] = assigned port   9,11,12=PD   48=WAN
 ```
 
 Each bond's ports are 6 physical positions apart (12 port numbers) in the same row — intentionally distributed across separate switch processors (ASICs), providing LACP resilience against single-block failure.
@@ -153,7 +144,7 @@ CRS317 replaced due to SFP+ transceiver instability and overheating to ~80°C.
 - Telnet: disabled
 - WWW (HTTP): disabled
 - Neighbor discovery: disabled on dynamic interfaces
-- Recommended access: SSH or Winbox
+- Recommended access: Winbox
 
 #### High Availability (HA)
 
