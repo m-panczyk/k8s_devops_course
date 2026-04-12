@@ -1,9 +1,9 @@
 NODE_NUMBER=1 
 
-if [ $NODE_NUMBER -eq 1 ]; then BASE=1; fi
-if [ $NODE_NUMBER -eq 2 ]; then BASE=7; fi
-if [ $NODE_NUMBER -eq 3 ]; then BASE=13; fi
-if [ $NODE_NUMBER -eq 4 ]; then BASE=19; fi
+if [ $NODE_NUMBER -eq 1 ]; then BASE=0; fi
+if [ $NODE_NUMBER -eq 2 ]; then BASE=6; fi
+if [ $NODE_NUMBER -eq 3 ]; then BASE=12; fi
+if [ $NODE_NUMBER -eq 4 ]; then BASE=18; fi
 
 for VM in $(limactl list --format '{{.Name}}'); do
   echo "Konfiguruję sieć dla: $VM"
