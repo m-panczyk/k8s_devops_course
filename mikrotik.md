@@ -30,10 +30,12 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | 3.6 | 2026-04-11 | Michał | Removed physical port layout diagram from topology |
 | 3.7 | 2026-04-12 | Alex, Michał | Applied node naming convention: Node 1–4 → OPHWNODE01–04 |
 | 3.8 | 2026-04-12 | Alex, Michał | Added Mac bond interface names (LINK-NODE1–4-AGG) to nodes table |
-| 3.9 | 2026-04-12 | Alex, Michał | Added gateway and DNS: 10.1.255.1 via ether48 |
+| 3.9 | 2026-04-12 | Alex, Michał | Added gateway and DNS info to nodes section |
 | 4.0 | 2026-04-12 | Alex, Michał | Added VM section: 24x OPVMKUB01–24 (Lima), IP ranges per node |
 | 4.1 | 2026-04-12 | Alex, Michał | New addressing: 10.1.255.0/24, nodes .201–.204 |
 | 4.2 | 2026-04-12 | Alex, Michał | VM network changed to 10.1.1.0/24, IPs .1–.24 sequential |
+| 4.3 | 2026-04-12 | Alex, Michał | DNS on switch: 10.1.53.53, static records for all hosts |
+| 4.4 | 2026-04-12 | Alex, Michał | DNS records changed from .local to .internal — no client config required |
 
 \newpage
 
@@ -49,8 +51,8 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 - 4x Apple Mac Pro
 - Each node: 2x 1Gbps RJ45 in LACP (2Gbps per node)
 - Network: 10.1.255.0/24
-- Gateway: `10.1.255.1` (reachable via ether48 — WAN-ETH)
-- DNS: `10.1.255.1`
+- Gateway: `10.1.0.1` (reachable via ether48 — WAN-ETH)
+- DNS: `10.1.53.53`
 
 | Node | IP | MAC (bond) | Bond interface |
 |------|----|------------|----------------|
@@ -179,10 +181,30 @@ CRS317 replaced due to SFP+ transceiver instability and overheating to ~80°C.
 
 #### Management Configuration
 
+- IP: `10.1.53.53/16` (bridge-wan)
 - Telnet: disabled
 - WWW (HTTP): disabled
 - Neighbor discovery: disabled on dynamic interfaces
 - Recommended access: Winbox
+
+#### DNS
+
+- Address: `10.1.53.53` (UDP/TCP 53)
+- Upstream: `8.8.8.8`, `1.1.1.1`
+- Default route: `10.1.0.1`
+- Static records:
+
+| Name | IP |
+|------|----|
+| ophwnode01.internal | `10.1.255.201` |
+| ophwnode02.internal | `10.1.255.202` |
+| ophwnode03.internal | `10.1.255.203` |
+| ophwnode04.internal | `10.1.255.204` |
+| opvmkub01.internal–opvmkub24.internal | `10.1.1.1–10.1.1.24` |
+
+**Client configuration (Linux / systemd-resolved)**
+
+`.internal` is forwarded via unicast DNS — no additional client configuration required.
 
 #### High Availability (HA)
 
