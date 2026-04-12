@@ -30,6 +30,7 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | 3.6 | 2026-04-11 | Michał | Removed physical port layout diagram from topology |
 | 3.7 | 2026-04-12 | Alex, Michał | Applied node naming convention: Node 1–4 → OPHWNODE01–04 |
 | 3.8 | 2026-04-12 | Alex, Michał | Added Mac bond interface names (LINK-NODE1–4-AGG) to nodes table |
+| 3.9 | 2026-04-12 | Alex, Michał | Added gateway and DNS: 10.254.254.1 via ether48 |
 
 \newpage
 
@@ -45,6 +46,8 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 - 4x Apple Mac Pro
 - Each node: 2x 1Gbps RJ45 in LACP (2Gbps per node)
 - Network: 10.254.254.0/25
+- Gateway: `10.254.254.1` (reachable via ether48 — WAN-ETH)
+- DNS: `10.254.254.1`
 
 | Node | IP | MAC (bond) | Bond interface |
 |------|----|------------|----------------|
