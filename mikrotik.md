@@ -31,6 +31,7 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | 3.7 | 2026-04-12 | Alex, Michał | Applied node naming convention: Node 1–4 → OPHWNODE01–04 |
 | 3.8 | 2026-04-12 | Alex, Michał | Added Mac bond interface names (LINK-NODE1–4-AGG) to nodes table |
 | 3.9 | 2026-04-12 | Alex, Michał | Added gateway and DNS: 10.254.254.1 via ether48 |
+| 4.0 | 2026-04-12 | Alex, Michał | Added VM section: 24x OPVMKUB01–24 (Lima), IP ranges per node |
 
 \newpage
 
@@ -55,6 +56,44 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | OPHWNODE02 | `10.254.254.113` | `60:d0:39:a0:a7:e2` | LINK-NODE2-AGG |
 | OPHWNODE03 | `10.254.254.117` | `60:d0:39:af:23:6a` | LINK-NODE3-AGG |
 | OPHWNODE04 | `10.254.254.116` | `60:d0:39:a2:4e:34` | LINK-NODE4-AGG |
+
+### VMs — Kubernetes (Lima)
+
+- 6x VM per node, 24x total
+- Type: Lima (Apple Virtualization Framework — `vmType: vz`)
+- OS: Ubuntu 24.04 Server ARM64
+- CPU: 10 vCPU, RAM: 24 GiB, Disk: 800 GiB
+- Network: bridged on `LINK-NODEx-AGG` (per host)
+- Network: 10.254.254.0/25
+- Gateway: `10.254.254.1`
+- DNS: `10.254.254.1`
+
+| VM | Host | IP |
+|----|------|----|
+| OPVMKUB01 | OPHWNODE01 | `10.254.254.16` |
+| OPVMKUB02 | OPHWNODE01 | `10.254.254.17` |
+| OPVMKUB03 | OPHWNODE01 | `10.254.254.18` |
+| OPVMKUB04 | OPHWNODE01 | `10.254.254.19` |
+| OPVMKUB05 | OPHWNODE01 | `10.254.254.20` |
+| OPVMKUB06 | OPHWNODE01 | `10.254.254.21` |
+| OPVMKUB07 | OPHWNODE02 | `10.254.254.26` |
+| OPVMKUB08 | OPHWNODE02 | `10.254.254.27` |
+| OPVMKUB09 | OPHWNODE02 | `10.254.254.28` |
+| OPVMKUB10 | OPHWNODE02 | `10.254.254.29` |
+| OPVMKUB11 | OPHWNODE02 | `10.254.254.30` |
+| OPVMKUB12 | OPHWNODE02 | `10.254.254.31` |
+| OPVMKUB13 | OPHWNODE03 | `10.254.254.32` |
+| OPVMKUB14 | OPHWNODE03 | `10.254.254.33` |
+| OPVMKUB15 | OPHWNODE03 | `10.254.254.34` |
+| OPVMKUB16 | OPHWNODE03 | `10.254.254.35` |
+| OPVMKUB17 | OPHWNODE03 | `10.254.254.36` |
+| OPVMKUB18 | OPHWNODE03 | `10.254.254.37` |
+| OPVMKUB19 | OPHWNODE04 | `10.254.254.44` |
+| OPVMKUB20 | OPHWNODE04 | `10.254.254.45` |
+| OPVMKUB21 | OPHWNODE04 | `10.254.254.46` |
+| OPVMKUB22 | OPHWNODE04 | `10.254.254.47` |
+| OPVMKUB23 | OPHWNODE04 | `10.254.254.48` |
+| OPVMKUB24 | OPHWNODE04 | `10.254.254.49` |
 
 ### Switch — MikroTik CRS354-48G-4S+2Q+RM
 
