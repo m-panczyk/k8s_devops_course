@@ -1,5 +1,5 @@
 # Ustaw numer fizycznego noda (1, 2, 3 lub 4)
-NODE_NUMBER=1 
+NODE_NUMBER=4 
 
 if [ $NODE_NUMBER -eq 1 ]; then BASE=0; fi  # OPOVMKUB01 -> 10.1.1.1
 if [ $NODE_NUMBER -eq 2 ]; then BASE=6; fi  # OPOVMKUB01 -> 10.1.1.7
@@ -28,7 +28,7 @@ network:
         - to: default
           via: 10.1.0.1
       nameservers:
-        addresses: [10.1.0.1]
+        addresses: [10.1.53.53]
 EOF
     chmod 600 /etc/netplan/99-bridged-static.yaml
     netplan apply
