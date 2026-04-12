@@ -29,6 +29,7 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | 3.5 | 2026-04-11 | Michał | Renamed nodes: Apple Mac M4 → Apple Mac Pro |
 | 3.6 | 2026-04-11 | Michał | Removed physical port layout diagram from topology |
 | 3.7 | 2026-04-12 | Alex, Michał | Applied node naming convention: Node 1–4 → OPHWNODE01–04 |
+| 3.8 | 2026-04-12 | Alex, Michał | Added Mac bond interface names (LINK-NODE1–4-AGG) to nodes table |
 
 \newpage
 
@@ -45,12 +46,12 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 - Each node: 2x 1Gbps RJ45 in LACP (2Gbps per node)
 - Network: 10.254.254.0/25
 
-| Node | IP | MAC (bond) |
-|------|----|------------|
-| OPHWNODE01 | `10.254.254.118` | `60:d0:39:ad:57:9f` |
-| OPHWNODE02 | `10.254.254.113` | `60:d0:39:a0:a7:e2` |
-| OPHWNODE03 | `10.254.254.117` | `60:d0:39:af:23:6a` |
-| OPHWNODE04 | `10.254.254.116` | `60:d0:39:a2:4e:34` |
+| Node | IP | MAC (bond) | Bond interface |
+|------|----|------------|----------------|
+| OPHWNODE01 | `10.254.254.118` | `60:d0:39:ad:57:9f` | LINK-NODE1-AGG |
+| OPHWNODE02 | `10.254.254.113` | `60:d0:39:a0:a7:e2` | LINK-NODE2-AGG |
+| OPHWNODE03 | `10.254.254.117` | `60:d0:39:af:23:6a` | LINK-NODE3-AGG |
+| OPHWNODE04 | `10.254.254.116` | `60:d0:39:a2:4e:34` | LINK-NODE4-AGG |
 
 ### Switch — MikroTik CRS354-48G-4S+2Q+RM
 
