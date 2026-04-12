@@ -28,6 +28,7 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | 3.4 | 2026-04-11 | Alex, Michał | Translated to English |
 | 3.5 | 2026-04-11 | Michał | Renamed nodes: Apple Mac M4 → Apple Mac Pro |
 | 3.6 | 2026-04-11 | Michał | Removed physical port layout diagram from topology |
+| 3.7 | 2026-04-12 | Alex, Michał | Applied node naming convention: Node 1–4 → OPHWNODE01–04 |
 
 \newpage
 
@@ -46,10 +47,10 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 
 | Node | IP | MAC (bond) |
 |------|----|------------|
-| Node 1 | `10.254.254.118` | `60:d0:39:ad:57:9f` |
-| Node 2 | `10.254.254.113` | `60:d0:39:a0:a7:e2` |
-| Node 3 | `10.254.254.117` | `60:d0:39:af:23:6a` |
-| Node 4 | `10.254.254.116` | `60:d0:39:a2:4e:34` |
+| OPHWNODE01 | `10.254.254.118` | `60:d0:39:ad:57:9f` |
+| OPHWNODE02 | `10.254.254.113` | `60:d0:39:a0:a7:e2` |
+| OPHWNODE03 | `10.254.254.117` | `60:d0:39:af:23:6a` |
+| OPHWNODE04 | `10.254.254.116` | `60:d0:39:a2:4e:34` |
 
 ### Switch — MikroTik CRS354-48G-4S+2Q+RM
 
@@ -63,16 +64,14 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 
 **Bridge — bridge-wan**
 
-> Bridge MAC address requires verification via `/interface bridge print` on the device.
-
 | Interface | MAC | Usage | Active |
 |-----------|-----|-------|--------|
 | sfp-sfpplus1 | `04:F4:1C:8F:76:9C` | FO uplink — WAN-FIBRE | no |
 | ether48 | `04:F4:1C:8F:76:CF` | Copper uplink — WAN-ETH | yes |
-| bond1 | `04:F4:1C:8F:76:A0` | Node 1 | yes |
-| bond2 | `04:F4:1C:8F:76:A1` | Node 2 | yes |
-| bond3 | `04:F4:1C:8F:76:B8` | Node 3 | yes |
-| bond4 | `04:F4:1C:8F:76:B9` | Node 4 | yes |
+| bond1 | `04:F4:1C:8F:76:A0` | OPHWNODE01 | yes |
+| bond2 | `04:F4:1C:8F:76:A1` | OPHWNODE02 | yes |
+| bond3 | `04:F4:1C:8F:76:B8` | OPHWNODE03 | yes |
+| bond4 | `04:F4:1C:8F:76:B9` | OPHWNODE04 | yes |
 | ether9 | `04:F4:1C:8F:76:A8` | PD1/124 | yes |
 | ether11 | `04:F4:1C:8F:76:AA` | PD1/122 | yes |
 | ether12 | `04:F4:1C:8F:76:AB` | PD1/123 | yes |
@@ -80,10 +79,6 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | ether22 | `04:F4:1C:8F:76:B5` | PD1/121 | yes |
 | ether23 | `04:F4:1C:8F:76:B6` | PD1/119 | yes |
 | ether24 | `04:F4:1C:8F:76:B7` | PD1/118 | yes |
-
-> MAC addresses for ether21 and ether22 were not visible in `print` output — derived from sequence.
-
-> Bond MAC addresses (bond1–bond4) are the MAC addresses of the first slave port (ether1, ether2, ether25, ether26) — default RouterOS behaviour. Confirm via `/interface bonding print`.
 
 **Bonds — slave ports**
 
@@ -110,7 +105,7 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
   bond1   bond2   bond3   bond4
  (1+13) (2+14) (25+37) (26+38)
    |       |       |       |
- Node 1  Node 2  Node 3  Node 4
+ OPHWNODE01  OPHWNODE02  OPHWNODE03  OPHWNODE04
 ```
 
 Each bond's ports are 6 physical positions apart (12 port numbers) in the same row — intentionally distributed across separate switch processors (ASICs), providing LACP resilience against single-block failure.
@@ -119,10 +114,10 @@ Each bond's ports are 6 physical positions apart (12 port numbers) in the same r
 
 | Bond | Ports | Node | Hash policy |
 |------|-------|------|-------------|
-| bond1 | ether1 + ether13 | Node 1 | layer-2-and-3 |
-| bond2 | ether2 + ether14 | Node 2 | layer-2-and-3 |
-| bond3 | ether25 + ether37 | Node 3 | layer-2-and-3 |
-| bond4 | ether26 + ether38 | Node 4 | layer-2-and-3 |
+| bond1 | ether1 + ether13 | OPHWNODE01 | layer-2-and-3 |
+| bond2 | ether2 + ether14 | OPHWNODE02 | layer-2-and-3 |
+| bond3 | ether25 + ether37 | OPHWNODE03 | layer-2-and-3 |
+| bond4 | ether26 + ether38 | OPHWNODE04 | layer-2-and-3 |
 
 - Throughput per node: 2x 1Gbps = 2Gbps
 - Total node throughput: 4x 2Gbps = 8Gbps

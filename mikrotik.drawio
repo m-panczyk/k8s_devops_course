@@ -164,16 +164,16 @@
     <mxCell id="353" value="bond4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="555" y="475" width="75" height="26" as="geometry"/></mxCell>
 
     <!-- ═══ NODES ═══ -->
-    <mxCell id="300" value="Node 1&#xa;Apple Mac Pro&#xa;10.254.254.118" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;align=center;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=10;" vertex="1" parent="1">
+    <mxCell id="300" value="OPHWNODE01&#xa;Apple Mac Pro&#xa;10.254.254.118" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;align=center;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=10;" vertex="1" parent="1">
       <mxGeometry x="90" y="560" width="55" height="70" as="geometry"/>
     </mxCell>
-    <mxCell id="301" value="Node 2&#xa;Apple Mac Pro&#xa;10.254.254.113" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;align=center;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=10;" vertex="1" parent="1">
+    <mxCell id="301" value="OPHWNODE02&#xa;Apple Mac Pro&#xa;10.254.254.113" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;align=center;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=10;" vertex="1" parent="1">
       <mxGeometry x="255" y="560" width="55" height="70" as="geometry"/>
     </mxCell>
-    <mxCell id="302" value="Node 3&#xa;Apple Mac Pro&#xa;10.254.254.117" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=center;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=10;" vertex="1" parent="1">
+    <mxCell id="302" value="OPHWNODE03&#xa;Apple Mac Pro&#xa;10.254.254.117" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=center;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=10;" vertex="1" parent="1">
       <mxGeometry x="390" y="560" width="55" height="70" as="geometry"/>
     </mxCell>
-    <mxCell id="303" value="Node 4&#xa;Apple Mac Pro&#xa;10.254.254.116" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;align=center;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=10;" vertex="1" parent="1">
+    <mxCell id="303" value="OPHWNODE04&#xa;Apple Mac Pro&#xa;10.254.254.116" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;align=center;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=10;" vertex="1" parent="1">
       <mxGeometry x="555" y="560" width="55" height="70" as="geometry"/>
     </mxCell>
 
