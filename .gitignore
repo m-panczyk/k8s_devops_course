@@ -10,3 +10,4 @@
 !dns_setup.rsc
 !dns_records.rsc
 !set_network.sh
+!add_pd1_ports.rsc

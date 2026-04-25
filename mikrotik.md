@@ -4,7 +4,7 @@ subtitle: "Network Infrastructure Documentation — Kubernetes Cluster"
 author:
   - "Alex"
   - "Michał"
-date: "2026-04-11"
+date: "2026-04-25"
 subject: "Network Team"
 keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 ---
@@ -36,6 +36,7 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | 4.2 | 2026-04-12 | Alex, Michał | VM network changed to 10.1.1.0/24, IPs .1–.24 sequential |
 | 4.3 | 2026-04-12 | Alex, Michał | DNS on switch: 10.1.53.53, static records for all hosts |
 | 4.4 | 2026-04-12 | Alex, Michał | DNS records changed from .local to .internal — no client config required |
+| 4.5 | 2026-04-25 | Alex, Michał | Added PD1 ports: ether33–36 (PD1/110–113), ether43–46 (PD1/114–117) |
 
 \newpage
 
@@ -124,6 +125,14 @@ keywords: [MikroTik, Kubernetes, LACP, CRS354, network]
 | ether22 | `04:F4:1C:8F:76:B5` | PD1/121 | yes |
 | ether23 | `04:F4:1C:8F:76:B6` | PD1/119 | yes |
 | ether24 | `04:F4:1C:8F:76:B7` | PD1/118 | yes |
+| ether33 | `04:F4:1C:8F:76:C0` | PD1/110 | yes |
+| ether34 | `04:F4:1C:8F:76:C1` | PD1/111 | yes |
+| ether35 | `04:F4:1C:8F:76:C2` | PD1/112 | yes |
+| ether36 | `04:F4:1C:8F:76:C3` | PD1/113 | yes |
+| ether43 | `04:F4:1C:8F:76:CA` | PD1/114 | yes |
+| ether44 | `04:F4:1C:8F:76:CB` | PD1/115 | yes |
+| ether45 | `04:F4:1C:8F:76:CC` | PD1/116 | yes |
+| ether46 | `04:F4:1C:8F:76:CD` | PD1/117 | yes |
 
 **Bonds — slave ports**
 
@@ -177,7 +186,7 @@ CRS317 replaced due to SFP+ transceiver instability and overheating to ~80°C.
 | Throughput per node | 20Gbps | 2Gbps |
 | Total node throughput | 80Gbps | 8Gbps |
 | Stability | SFP+ issues (80°C) | Stable copper links |
-| Free ports | 7x SFP+ | 39x RJ45 + 3x SFP+ + 2x QSFP+ |
+| Free ports | 7x SFP+ | 23x RJ45 + 4x SFP+ + 2x QSFP+ |
 
 #### Management Configuration
 
@@ -185,6 +194,7 @@ CRS317 replaced due to SFP+ transceiver instability and overheating to ~80°C.
 - Telnet: disabled
 - WWW (HTTP): disabled
 - Neighbor discovery: disabled on dynamic interfaces
+- Timezone: Europe/Warsaw
 - Recommended access: Winbox
 
 #### DNS
@@ -196,15 +206,12 @@ CRS317 replaced due to SFP+ transceiver instability and overheating to ~80°C.
 
 | Name | IP |
 |------|----|
-| ophwnode01.internal | `10.1.255.201` |
-| ophwnode02.internal | `10.1.255.202` |
-| ophwnode03.internal | `10.1.255.203` |
-| ophwnode04.internal | `10.1.255.204` |
+| ophwnode01, ophwnode01.internal | `10.1.255.201` |
+| ophwnode02, ophwnode02.internal | `10.1.255.202` |
+| ophwnode03, ophwnode03.internal | `10.1.255.203` |
+| ophwnode04, ophwnode04.internal | `10.1.255.204` |
+| opvmkub01–opvmkub24 | `10.1.1.1–10.1.1.24` |
 | opvmkub01.internal–opvmkub24.internal | `10.1.1.1–10.1.1.24` |
-
-**Client configuration (Linux / systemd-resolved)**
-
-`.internal` is forwarded via unicast DNS — no additional client configuration required.
 
 #### High Availability (HA)
 
