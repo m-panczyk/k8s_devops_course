@@ -11,3 +11,4 @@
 !dns_records.rsc
 !set_network.sh
 !add_pd1_ports.rsc
+!step_by_step_guide.md
